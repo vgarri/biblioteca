@@ -36,7 +36,7 @@ const createUser = (user) => {
         // Signed in
         let user = userCredential.user;
         console.log(`se ha registrado ${user.email} ID:${user.uid}`)
-        alert(`se ha registrado ${user.email} ID:${user.uid}`)
+        alert(`User ${user.email} successfully registered`)
         // ...
         // Saves user in firestore
         createUser({

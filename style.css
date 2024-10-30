@@ -156,14 +156,15 @@ section {
 
 /* form-containers*/
 #forms-container{
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
-    border-radius: 5px;
-    padding: 30px;
-    width: 100%;
+    border-radius: 8px;
+    padding: 60px;
+    width: fit-content;
     height: auto;
     margin: 0 auto;
 
@@ -175,6 +176,39 @@ section {
     justify-content: center;
     
 }
+
+input[type="text"],
+input[type="email"],
+input[type="password"]
+ {
+  width: 100%;
+  height: 20px;
+  border-radius: 20px;
+  padding: 8px;
+  margin: 5px;
+}
+
+input[type="submit"]{
+
+        justify-self: center;
+        border: 0;
+        background-color: #4c61ff;
+        border-radius: 8px;
+        color: #fff;
+        display: flex;
+        font-size: 20px;
+        padding: 6px 18px;
+        cursor: pointer;
+        transition: .3s;
+        margin: 20px;
+    }
+    input[type="submit"]:active{
+        transform: scale(0.9);
+    }
+    input[type="submit"]:hover{
+        background-color: #B8C0FF;
+      }
+    
 
 
 

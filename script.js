@@ -46,7 +46,7 @@ async function createCardsDom() {
             titleContainer.innerHTML ="";
             section.innerHTML = ""//para limpiar el dom
             header.innerHTML = `
-                <button class ='backButton' onclick="window.location.reload()">Back to lists</button>
+                <button class ='backButton' onclick="window.location.reload()">BACK TO LISTS</button>
                 `
 
             //mismo procedimiento anterior:
@@ -79,12 +79,4 @@ async function createCardsDom() {
     })
 }
 createCardsDom();
-
-
-
-
-
-
-
-
-
+//

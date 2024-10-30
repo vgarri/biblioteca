@@ -3,7 +3,10 @@
 }
 
 body {
-    background-color: #BBD0FF;
+    background-image: linear-gradient(
+        #BBD0FF,
+        #9a78ff
+    ) ;
 }
 #titleContainer{
     display: flex;

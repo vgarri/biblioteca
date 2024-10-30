@@ -17,6 +17,7 @@ async function createCardsDom() {
     let datos = await obtainData();
     let section = document.body.querySelector("#listsContainer")
     let header = document.body.querySelector("#buttonBackContainer")
+    let titleContainer = document.body.querySelector("#titleContainer")
 
     datos.forEach(list => {
 
@@ -42,6 +43,7 @@ async function createCardsDom() {
             let datosLista = await fetch(`https://api.nytimes.com/svc/books/v3/lists/${id}.json?api-key=${apiKey}`)
             let data = await datosLista.json();
 
+            titleContainer.innerHTML ="";
             section.innerHTML = ""//para limpiar el dom
             header.innerHTML = `
                 <button class ='backButton' onclick="window.location.reload()">Back to lists</button>
@@ -54,7 +56,7 @@ async function createCardsDom() {
                 section.innerHTML += `
                 
                 <div class='tarjetalibro'>
-                <h4>#${book.rank} ${book.title}</h4>
+                <h3>#${book.rank} ${book.title}</h3>
                 <div class="caratula">
                 <img src=${book.book_image}></img>
                 </div>
@@ -78,11 +80,6 @@ async function createCardsDom() {
 }
 createCardsDom();
 
-async function generarInfoLista() {
-    let datos = await fetch();
-
-
-}
 
 
 
@@ -91,28 +88,3 @@ async function generarInfoLista() {
 
 
 
-
-
-
-
-
-// const spinner = async () => {
-//     return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve;
-//     });
-//   });   
-// }
-
-
-// async function createCards(){
-
-//    let ul = document.createElement("ul");
-//     let li = document.createElement("li");
-//     li.innerHTML = `<p></p>`
-//     ul.appendChild(li)
-//   document.body.appendChild(ul)
-
-
-// }
-// createCards();

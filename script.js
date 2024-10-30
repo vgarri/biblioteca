@@ -16,6 +16,7 @@ obtainData()
 async function createCardsDom() {
     let datos = await obtainData();
     let section = document.body.querySelector("#listsContainer")
+    let header = document.body.querySelector("#buttonBackContainer")
 
     datos.forEach(list => {
 
@@ -41,11 +42,16 @@ async function createCardsDom() {
             let datosLista = await fetch(`https://api.nytimes.com/svc/books/v3/lists/${id}.json?api-key=${apiKey}`)
             let data = await datosLista.json();
 
-            section.innerHTML = "";//para limpiar el dom
+            section.innerHTML = ""//para limpiar el dom
+            header.innerHTML = `
+                <button class ='backButton' onclick="window.location.reload()">Back to lists</button>
+                `
+
             //mismo procedimiento anterior:
             data.results.books.forEach(book => {
-                section.innerHTML += `
                 
+                
+                section.innerHTML += `
                 
                 <div class='tarjetalibro'>
                 <h4>#${book.rank} ${book.title}</h4>
@@ -55,7 +61,7 @@ async function createCardsDom() {
                 <p>Weeks on the list: ${book.weeks_on_list}</p>
                 <p>Description: ${book.description}</p>
                 
-                <button class ='comprarAmazon' onclick=window.location.href="${book.amazon_product_url}" target="_blank">
+                <button class ='comprarAmazon' onclick=window.open("${book.amazon_product_url}")>
                 BUY NOW
                 
                 </button>

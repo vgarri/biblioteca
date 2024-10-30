@@ -9,7 +9,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);// Inicializaar app Firebase
+firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
@@ -71,8 +71,9 @@ const createUser = (user) => {
         // Signed in
         let user = userCredential.user;
         console.log(`se ha logado ${user.email} ID:${user.uid}`)
-        alert(`se ha logado ${user.email} ID:${user.uid}`)
+        alert(`User ${user.email} successfully logged in.`)
         console.log("USER", user);
+        
       })
       .catch((error) => {
         let errorCode = error.code;
@@ -86,7 +87,11 @@ const createUser = (user) => {
     let user = firebase.auth().currentUser;
   
     firebase.auth().signOut().then(() => {
+      document.body.querySelector("#infoUser").innerHTML=""
+      document.getElementById("botonera").style.display = "none";
       console.log("Sale del sistema: " + user.email)
+      alert(`User: ${user.email} logged out successfully!`)
+      location.replace('index.html')
     }).catch((error) => {
       console.log("hubo un error: " + error);
     });
@@ -97,12 +102,17 @@ const createUser = (user) => {
     event.preventDefault();
     let email = event.target.elements.email2.value;
     let pass = event.target.elements.pass3.value;
+    let infoUser = document.body.querySelector("#infoUser")
+    infoUser.innerHTML=`
+        <h5>Logged in as:${email}</h5>
+        `
+        document.getElementById("botonera").style.display = "flex";
     signInUser(email, pass)
   })
 }
     if(document.getElementById("salir")){
   document.getElementById("salir").addEventListener("click", signOut);
-    }
+    signOut()}
   // Listener de usuario en el sistema
   // Controlar usuario logado
   firebase.auth().onAuthStateChanged(function (user) {
@@ -116,16 +126,6 @@ const createUser = (user) => {
   });
 
 
-
-
-
-
-
-
-
-
-
-
 //*******************************FETCH Y MANIPULACION DEL DOM*******************************
 async function obtainData() {
     let response = await fetch(`https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=${apiKey}`);
@@ -136,6 +136,7 @@ async function obtainData() {
 obtainData()
 // Función para cargar todas las listas en el DOM
 async function createCardsDom() {
+    document.getElementById("registerButtonContainer").style.display = "flex";
     let datos = await obtainData();
     let section = document.body.querySelector("#listsContainer")
     let header = document.body.querySelector("#buttonBackContainer")
@@ -161,6 +162,7 @@ async function createCardsDom() {
     })
     document.querySelectorAll(".cargarLista").forEach(button => {
         button.addEventListener("click", async function () {
+            document.getElementById("registerButtonContainer").style.display = "none";
             let id = this.getAttribute("id");
             let datosLista = await fetch(`https://api.nytimes.com/svc/books/v3/lists/${id}.json?api-key=${apiKey}`)
             let data = await datosLista.json();

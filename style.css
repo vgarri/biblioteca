@@ -34,11 +34,15 @@ section {
 
     display: flex;
     justify-content: space-evenly;
-    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-    margin: 15px auto;
+    
+    margin: 10px auto;
     padding: 20px;
-    gap: 90px;
+    gap: 10px;
+    border-radius: 8px;
 
+}
+#botonera{
+    display:none;
 }
 .tarjetalista {
     justify-content: center;
@@ -106,6 +110,7 @@ section {
     padding: 6px 18px;
     cursor: pointer;
     transition: .3s;
+    margin: 20px;
 
 }
 .backButton:active{

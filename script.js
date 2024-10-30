@@ -79,12 +79,3 @@ async function createCardsDom() {
     })
 }
 createCardsDom();
-
-
-
-
-
-
-
-
-
